@@ -12,7 +12,7 @@ public class ControladorRequests {
 	private final String BANCO_DO_BRASIL = "BBAS3";
 	private final String PETROBRAS = "PETR4";
 	private final String VALE = "vale3.sa";
-	private final String AMBEV = "ABEV3";
+	private final String GOOGLE = "GOOG";
 	private final String SANTANDER = "bsan33";
 	
 	private final String FUNCTION_PARAM = "function";
@@ -26,7 +26,7 @@ public class ControladorRequests {
 	private String paramsBB;
 	private String paramsPETR;
 	private String paramsVALE;
-	private String paramsABEV;
+	private String paramsGOOG;
 	private String paramsSAN;
 	
 	private static ControladorRequests instance;
@@ -38,8 +38,8 @@ public class ControladorRequests {
 	}
 	
 	public String request(String params) {
-		System.out.println(paramsBB);
-		String response = request.request(paramsBB);
+		System.out.println(paramsGOOG);
+		String response = request.request(paramsGOOG);
 		return response;
 	}
 	
@@ -62,11 +62,11 @@ public class ControladorRequests {
 		parametersVALE.put(INTERVAL_PARAM, INTERVAL_VALUE);
 		parametersVALE.put(KEY_PARAM, KEY_VALUE);
 		
-		Map<String, String> parametersABEV = new HashMap<>();
-		parametersABEV.put(FUNCTION_PARAM, FUNCTION_VALUE);
-		parametersABEV.put(SYMBOL_PARAM, AMBEV);
-		parametersABEV.put(INTERVAL_PARAM, INTERVAL_VALUE);
-		parametersABEV.put(KEY_PARAM, KEY_VALUE);
+		Map<String, String> parametersGOOG = new HashMap<>();
+		parametersGOOG.put(FUNCTION_PARAM, FUNCTION_VALUE);
+		parametersGOOG.put(SYMBOL_PARAM, GOOGLE);
+		parametersGOOG.put(INTERVAL_PARAM, INTERVAL_VALUE);
+		parametersGOOG.put(KEY_PARAM, KEY_VALUE);
 		
 		Map<String, String> parametersSAN = new HashMap<>();
 		parametersSAN.put(FUNCTION_PARAM, FUNCTION_VALUE);
@@ -78,7 +78,7 @@ public class ControladorRequests {
 			paramsBB = ParameterStringBuilder.getParamsString(parametersBB);
 			paramsPETR = ParameterStringBuilder.getParamsString(parametersPETR);
 			paramsVALE = ParameterStringBuilder.getParamsString(parametersVALE);
-			paramsABEV = ParameterStringBuilder.getParamsString(parametersABEV);
+			paramsGOOG = ParameterStringBuilder.getParamsString(parametersGOOG);
 			paramsSAN = ParameterStringBuilder.getParamsString(parametersSAN);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
