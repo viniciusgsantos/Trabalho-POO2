@@ -5,6 +5,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.google.gson.Gson;
+
 public class Request {
 	
 	public String request(String params) {
@@ -15,6 +17,8 @@ public class Request {
 
 			System.out.println("Resposta: " + connection.getResponseMessage());
 			System.out.println("Status: " + connection.getResponseCode());
+			
+			Gson gson = new Gson();
 			return "" + connection.getResponseCode();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
