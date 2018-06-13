@@ -25,8 +25,7 @@ public class Request {
 			StringBuilder builder = new StringBuilder();
 			
 			while(scanner.hasNextLine()) {
-				builder.append("\n");
-				builder.append(scanner.nextLine());
+				builder.append("\n" + scanner.nextLine());
 			}
 			
 			String json = builder.toString();
