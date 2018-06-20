@@ -32,5 +32,14 @@ public class ModuloAnalitico {
 		JsonObject jsonObject = jp.parse(jsonIntraday).getAsJsonObject();
 		JsonObject jsonTimeSeries = jsonObject.get("Time Series (1min)").getAsJsonObject();
 		
+		double close = 0;
+		for(Entry<String, JsonElement> entry : jsonTimeSeries.entrySet()) {
+			JsonObject time = entry.getValue().getAsJsonObject();
+			close = time.get("4. close").getAsDouble();
+			break;
+		}
+		
+		return close;
+		
 	}
 }
