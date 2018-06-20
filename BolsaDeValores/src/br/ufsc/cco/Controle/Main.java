@@ -1,11 +1,11 @@
 package br.ufsc.cco.Controle;
 
-import br.ufsc.cco.request.Request;
-
 public class Main {
 	
 	public static void main(String[] args) {
-		Request req = new Request();
-		ControladorRequests.getInstance().request("");
+		String json = ControladorRequests.getInstance().request(ControladorRequests.BANCO_DO_BRASIL);
+		ModuloAnalitico ma = new ModuloAnalitico();
+		double media = ma.getSMA(json);
+		System.out.println(media);
 	}
 }
