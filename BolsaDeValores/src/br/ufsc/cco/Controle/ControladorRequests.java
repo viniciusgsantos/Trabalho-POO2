@@ -6,10 +6,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.TimerTask;
 
 import br.ufsc.cco.objects.RequestsURL;
 
-public class ControladorRequests {
+public class ControladorRequests extends TimerTask {
 	
 	public static final int BANCO_DO_BRASIL = 0;
 	public static final int PETROBRAS = 1;
@@ -49,7 +50,7 @@ public class ControladorRequests {
 		return jsonResponse;
 	}
 	
-	public String requestIntraday(String params) {
+	private String requestIntraday(String params) throws NullPointerException {
 		try {
 			URL url = new URL("https://www.alphavantage.co/query?" + params);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -65,6 +66,7 @@ public class ControladorRequests {
 				builder.append("\n" + scanner.nextLine());
 			}
 			
+			System.out.println("Requisitou");
 			scanner.close();
 			return builder.toString();
 			
@@ -75,6 +77,92 @@ public class ControladorRequests {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	@Override
+	public void run() {
+		
+		new Thread() {
+			@Override
+			public void run() {
+				System.out.println(1);
+				boolean acessou = true;
+				do {
+					try {
+						request(BANCO_DO_BRASIL);
+					} catch(NullPointerException e) {
+						acessou = false;
+					}
+				} while(!acessou);
+			}
+			
+		}.start();
+		
+		new Thread() {
+			@Override
+			public void run() {
+				System.out.println(2);
+				boolean acessou = true;
+				do {
+					try {
+						request(GOOGLE);
+					} catch(NullPointerException e) {
+						acessou = false;
+					}
+				} while(!acessou);
+			}
+			
+		}.start();
+		
+		new Thread() {
+			@Override
+			public void run() {
+				System.out.println(3);
+				boolean acessou = true;
+				do {
+					try {
+						request(PETROBRAS);
+					} catch(NullPointerException e) {
+						acessou = false;
+					}
+				} while(!acessou);
+			}
+			
+		}.start();
+		
+		new Thread() {
+			@Override
+			public void run() {
+				System.out.println(4);
+				boolean acessou = true;
+				do {
+					try {
+						request(VALE);
+					} catch(NullPointerException e) {
+						acessou = false;
+					}
+				} while(!acessou);
+				this.interrupt();
+			}
+			
+		}.start();
+		
+		new Thread() {
+			@Override
+			public void run() {
+				System.out.println(5);
+				boolean acessou = true;
+				do {
+					try {
+						request(SANTANDER);
+					} catch(NullPointerException e) {
+						acessou = false;
+					}
+				} while(!acessou);
+			}
+			
+		}.start();
+		
 	}
 	
 	public static ControladorRequests getInstance() {

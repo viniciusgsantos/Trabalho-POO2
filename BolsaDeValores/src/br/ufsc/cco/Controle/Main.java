@@ -5,7 +5,7 @@ import br.ufsc.cco.telas.TelaPrincipal;
 public class Main {
 	
 	public static void main(String[] args) {
-		String json = ControladorRequests.getInstance().request(ControladorRequests.BANCO_DO_BRASIL);
+		/*String json = ControladorRequests.getInstance().request(ControladorRequests.BANCO_DO_BRASIL);
 		ModuloAnalitico ma = new ModuloAnalitico();
 		double media = ma.getSMA(json);
 		double ultimoFechamento = ma.getLastClose(json);
@@ -34,9 +34,8 @@ public class Main {
 		double media4 = ma.getSMA(json4);
 		double ultimoFechamento4 = ma.getLastClose(json4);
 		System.out.println("SMA: " + media4);
-		System.out.println("close: " + ultimoFechamento4);
+		System.out.println("close: " + ultimoFechamento4);*/
 		
-		TelaPrincipal tela = new TelaPrincipal("Titulo");
-		tela.setVisible(true);
+		ControladorPrincipal.getInstance().init();;
 	}
 }

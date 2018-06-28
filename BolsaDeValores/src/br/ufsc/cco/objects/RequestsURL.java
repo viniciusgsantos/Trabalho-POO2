@@ -4,23 +4,23 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-import br.ufsc.cco.request.ParameterStringBuilder;
+import br.ufsc.cco.util.ParameterStringBuilder;
 
 public class RequestsURL {
 	
-	private final String BANCO_DO_BRASIL = "BBAS3";
-	private final String PETROBRAS = "PETR4";
-	private final String VALE = "vale3.sa";
-	private final String GOOGLE = "GOOG";
-	private final String SANTANDER = "bsan33";
+	private static final String BANCO_DO_BRASIL = "BBAS3";
+	private static final String PETROBRAS = "PETR4";
+	private static final String VALE = "vale3.sa";
+	private static final String GOOGLE = "GOOG";
+	private static final String SANTANDER = "bsan33";
 	
-	private final String FUNCTION_PARAM = "function";
-	private final String FUNCTION_VALUE = "TIME_SERIES_INTRADAY";
-	private final String SYMBOL_PARAM = "symbol";
-	private final String INTERVAL_PARAM = "interval";
-	private final String INTERVAL_VALUE = "1min";
-	private final String KEY_PARAM = "apikey";
-	private final String KEY_VALUE = "7GW0PVNZ0KA2KIWC";
+	private static final String FUNCTION_PARAM = "function";
+	private static final String FUNCTION_VALUE = "TIME_SERIES_INTRADAY";
+	private static final String SYMBOL_PARAM = "symbol";
+	private static final String INTERVAL_PARAM = "interval";
+	private static final String INTERVAL_VALUE = "1min";
+	private static final String KEY_PARAM = "apikey";
+	private static final String KEY_VALUE = "7GW0PVNZ0KA2KIWC";
 	
 	private String paramsBB;
 	private String paramsPETR;

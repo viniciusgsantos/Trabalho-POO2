@@ -46,8 +46,8 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 	
 	private JButton jbMonitorar;
 	
-	public TelaPrincipal(String titulo) {
-		super(titulo);
+	public TelaPrincipal() {
+		super("Mini Bloomberg");
 		setLayout(null);
 		setSize(620, 300);
 		setLocationRelativeTo(null);

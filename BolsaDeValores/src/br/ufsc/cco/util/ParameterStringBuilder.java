@@ -1,4 +1,4 @@
-package br.ufsc.cco.request;
+package br.ufsc.cco.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
