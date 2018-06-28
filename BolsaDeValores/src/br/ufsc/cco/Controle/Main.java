@@ -1,5 +1,7 @@
 package br.ufsc.cco.Controle;
 
+import br.ufsc.cco.telas.TelaPrincipal;
+
 public class Main {
 	
 	public static void main(String[] args) {
@@ -33,5 +35,8 @@ public class Main {
 		double ultimoFechamento4 = ma.getLastClose(json4);
 		System.out.println("SMA: " + media4);
 		System.out.println("close: " + ultimoFechamento4);
+		
+		TelaPrincipal tela = new TelaPrincipal("Titulo");
+		tela.setVisible(true);
 	}
 }
