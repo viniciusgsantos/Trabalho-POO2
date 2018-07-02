@@ -1,24 +1,18 @@
-package br.ufsc.cco.Controle;
+package br.ufsc.cco.controle;
 
+import br.ufsc.cco.objects.NomeDeAtivo;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
-import java.util.TimerTask;
 
 import br.ufsc.cco.objects.RequestsURL;
 
-public class ControladorRequests extends TimerTask {
+public class ControladorRequests {
 	
-	public static final int BANCO_DO_BRASIL = 0;
-	public static final int PETROBRAS = 1;
-	public static final int VALE = 2;
-	public static final int GOOGLE = 3;
-	public static final int SANTANDER = 4;
-	
-	private RequestsURL requests;
+	private final RequestsURL requests;
 	
 	private static ControladorRequests instance;
 	
@@ -26,7 +20,7 @@ public class ControladorRequests extends TimerTask {
 		requests = new RequestsURL();
 	}
 	
-	public String request(int ativo) throws IllegalArgumentException {
+	public String request(int ativo) throws NullPointerException, IOException {
 		String jsonResponse;
 		switch(ativo) {
 		case 0:
@@ -50,7 +44,7 @@ public class ControladorRequests extends TimerTask {
 		return jsonResponse;
 	}
 	
-	private String requestIntraday(String params) throws NullPointerException {
+	private String requestIntraday(String params) throws NullPointerException, IOException {
 		try {
 			URL url = new URL("https://www.alphavantage.co/query?" + params);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -63,10 +57,9 @@ public class ControladorRequests extends TimerTask {
 			StringBuilder builder = new StringBuilder();
 			
 			while(scanner.hasNextLine()) {
-				builder.append("\n" + scanner.nextLine());
+				builder.append("\n").append(scanner.nextLine());
 			}
 			
-			System.out.println("Requisitou");
 			scanner.close();
 			return builder.toString();
 			
@@ -79,91 +72,96 @@ public class ControladorRequests extends TimerTask {
 		}
 	}
 	
-	@Override
-	public void run() {
+	public void requestInThreads() {
 		
 		new Thread() {
 			@Override
 			public void run() {
-				System.out.println(1);
 				boolean acessou = true;
 				do {
 					try {
-						request(BANCO_DO_BRASIL);
+						String response = request(NomeDeAtivo.BANCO_DO_BRASIL.id);
+                                                ControladorPrincipal.getInstance().updateData(NomeDeAtivo.BANCO_DO_BRASIL.nome, response);
 					} catch(NullPointerException e) {
 						acessou = false;
-					}
+					} catch(IOException e) {
+                                                acessou = false;
+                                        }
 				} while(!acessou);
 			}
-			
 		}.start();
 		
 		new Thread() {
 			@Override
 			public void run() {
-				System.out.println(2);
 				boolean acessou = true;
 				do {
 					try {
-						request(GOOGLE);
+						String response = request(NomeDeAtivo.PETROBRAS.id);
+                                                ControladorPrincipal.getInstance().updateData(NomeDeAtivo.PETROBRAS.nome, response);
 					} catch(NullPointerException e) {
 						acessou = false;
-					}
+					} catch(IOException e) {
+                                                acessou = false;
+                                        }
 				} while(!acessou);
 			}
-			
 		}.start();
 		
 		new Thread() {
 			@Override
 			public void run() {
-				System.out.println(3);
 				boolean acessou = true;
 				do {
 					try {
-						request(PETROBRAS);
+						String response = request(NomeDeAtivo.VALE.id);
+                                                ControladorPrincipal.getInstance().updateData(NomeDeAtivo.VALE.nome, response);                                                
 					} catch(NullPointerException e) {
 						acessou = false;
-					}
+					} catch(IOException e){
+                                                acessou = false;
+                                        }
 				} while(!acessou);
 			}
-			
 		}.start();
 		
 		new Thread() {
 			@Override
 			public void run() {
-				System.out.println(4);
 				boolean acessou = true;
 				do {
 					try {
-						request(VALE);
+						String response = request(NomeDeAtivo.GOOGLE.id);
+                                                ControladorPrincipal.getInstance().updateData(NomeDeAtivo.GOOGLE.nome, response);                                                
 					} catch(NullPointerException e) {
 						acessou = false;
-					}
+					} catch(IOException e) {
+                                            acessou = false;
+                                        }
 				} while(!acessou);
 				this.interrupt();
 			}
-			
 		}.start();
 		
 		new Thread() {
 			@Override
 			public void run() {
-				System.out.println(5);
 				boolean acessou = true;
 				do {
 					try {
-						request(SANTANDER);
+						String response = request(NomeDeAtivo.SANTANDER.id);
+                                                ControladorPrincipal.getInstance().updateData(NomeDeAtivo.SANTANDER.nome, response);                                                
 					} catch(NullPointerException e) {
 						acessou = false;
-					}
+					} catch(IOException e) {
+                                                acessou = false;
+                                        }
 				} while(!acessou);
 			}
-			
 		}.start();
-		
 	}
+        
+
 	
 	public static ControladorRequests getInstance() {
 		if(instance == null) {

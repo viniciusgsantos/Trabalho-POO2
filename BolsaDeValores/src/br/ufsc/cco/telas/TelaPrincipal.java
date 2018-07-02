@@ -1,6 +1,10 @@
 package br.ufsc.cco.telas;
 
+import br.ufsc.cco.controle.ControladorPrincipal;
+import br.ufsc.cco.objects.Situacao;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,74 +20,85 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel lGoogle;
-	private JLabel lBB;
-	private JLabel lSAN;
-	private JLabel lPetr;
-	private JLabel lVale;
+        private final JLabel lTitulo;
+        private final JLabel lMonitoramento;
+        
+	private final JLabel lGoogle;
+	private final JLabel lBB;
+	private final JLabel lSAN;
+	private final JLabel lPetr;
+	private final JLabel lVale;
 	
-	private JLabel lClose;
-	private JLabel lSMA;
-	private JLabel lSit;
+	private final JLabel lClose;
+	private final JLabel lSMA;
+	private final JLabel lSit;
 	
-	private JLabel lCloseGoogle;
-	private JLabel lCloseBB;
-	private JLabel lCloseSAN;
-	private JLabel lClosePetr;
-	private JLabel lCloseVale;
+	private final JLabel lCloseGoogle;
+	private final JLabel lCloseBB;
+	private final JLabel lCloseSAN;
+	private final JLabel lClosePetr;
+	private final JLabel lCloseVale;
 	
-	private JLabel lSMAGoogle;
-	private JLabel lSMABB;
-	private JLabel lSMASAN;
-	private JLabel lSMAPetr;
-	private JLabel lSMAVale;
+	private final JLabel lSMAGoogle;
+	private final JLabel lSMABB;
+	private final JLabel lSMASAN;
+	private final JLabel lSMAPetr;
+	private final JLabel lSMAVale;
 	
-	private JLabel lSitGoogle;
-	private JLabel lSitBB;
-	private JLabel lSitSAN;
-	private JLabel lSitPetr;
-	private JLabel lSitVale;
+	private final JLabel lSitGoogle;
+	private final JLabel lSitBB;
+	private final JLabel lSitSAN;
+	private final JLabel lSitPetr;
+	private final JLabel lSitVale;
 	
-	private JButton jbMonitorar;
+	private final JButton jbMonitorar;
 	
 	public TelaPrincipal() {
-		super("Mini Bloomberg");
+		super("Mini Bloomberg™");
 		setLayout(null);
-		setSize(620, 300);
+                setBackground(Color.BLACK);
+		setSize(620, 320);
 		setLocationRelativeTo(null);
 		setResizable(false);
+                getContentPane().setBackground(Color.BLACK);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
+                lTitulo = new JLabel("Mini Bloomberg™");
+                lMonitoramento = new JLabel("Monitoramento desligado");
+                
 		lGoogle = new JLabel("Google:");
-		lBB = new JLabel("BB:");
+		lBB = new JLabel("Banco do Brasil:");
 		lSAN = new JLabel("Santander:");
 		lPetr = new JLabel("Petrobras:");
 		lVale = new JLabel("Vale:");
 	
-		lClose = new JLabel("close:");
+		lClose = new JLabel("Fechamento:");
 		lSMA = new JLabel("SMA:");
 		lSit = new JLabel("Situação:");
 		
-		lCloseGoogle = new JLabel();
-		lCloseBB = new JLabel();
-		lCloseSAN = new JLabel();
-		lClosePetr = new JLabel();
-		lCloseVale = new JLabel();
+		lCloseGoogle = new JLabel("USD 0000,00");
+		lCloseBB = new JLabel("BRL 0000,00");
+		lCloseSAN = new JLabel("BRL 0000,00");
+		lClosePetr = new JLabel("BRL 0000,00");
+		lCloseVale = new JLabel("BRL 0000,00");
 		
-		lSMAGoogle = new JLabel();
-		lSMABB = new JLabel();
-		lSMASAN = new JLabel();
-		lSMAPetr = new JLabel();
-		lSMAVale = new JLabel();
+		lSMAGoogle = new JLabel("USD 0000,00");
+		lSMABB = new JLabel("BRL 0000,00");
+		lSMASAN = new JLabel("BRL 0000,00");
+		lSMAPetr = new JLabel("BRL 0000,00");
+		lSMAVale = new JLabel("BRL 0000,00");
+	
+		lSitGoogle = new JLabel(Situacao.AGUARDANDO.mensagem);
+		lSitBB = new JLabel(Situacao.AGUARDANDO.mensagem);
+		lSitSAN = new JLabel(Situacao.AGUARDANDO.mensagem);
+		lSitPetr = new JLabel(Situacao.AGUARDANDO.mensagem);
+		lSitVale = new JLabel(Situacao.AGUARDANDO.mensagem);
 		
-		lSitGoogle = new JLabel();
-		lSitBB = new JLabel();
-		lSitSAN = new JLabel();
-		lSitPetr = new JLabel();
-		lSitVale = new JLabel();
+		jbMonitorar = new JButton("Monitorar / Pausar");
 		
-		jbMonitorar = new JButton("Monitorar/Pausar");
-		
+                add(lTitulo);
+                add(lMonitoramento);
+                
 		add(lGoogle);
 		add(lBB);
 		add(lSAN);
@@ -113,12 +128,43 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 		add(lSit);
 		
 		add(jbMonitorar);
+                
+                lTitulo.setForeground(Color.ORANGE);
+                lTitulo.setFont(new Font(null, Font.PLAIN, 20));
+                
+                lMonitoramento.setForeground(Color.ORANGE);
+                lMonitoramento.setFont(new Font(null, Font.PLAIN, 15));
+                
+                lGoogle.setForeground(Color.ORANGE);
+                lBB.setForeground(Color.ORANGE);
+                lSAN.setForeground(Color.ORANGE);
+                lPetr.setForeground(Color.ORANGE);
+                lVale.setForeground(Color.ORANGE);
+                
+                lClose.setForeground(Color.ORANGE);
+                lSMA.setForeground(Color.ORANGE);
+                lSit.setForeground(Color.ORANGE);
+                
+                lSMAGoogle.setForeground(Color.LIGHT_GRAY);
+                lSMABB.setForeground(Color.LIGHT_GRAY);
+                lSMAPetr.setForeground(Color.LIGHT_GRAY);
+                lSMASAN.setForeground(Color.LIGHT_GRAY);
+                lSMAVale.setForeground(Color.LIGHT_GRAY);
+                
+                lSitGoogle.setForeground(Color.LIGHT_GRAY);
+                lSitBB.setForeground(Color.LIGHT_GRAY);
+                lSitSAN.setForeground(Color.LIGHT_GRAY);
+                lSitPetr.setForeground(Color.LIGHT_GRAY);
+                lSitVale.setForeground(Color.LIGHT_GRAY);
 		
 		jbMonitorar.addActionListener(this);
 		
 		Insets insets = getInsets();
 		//Ativos
-		Dimension size = lGoogle.getPreferredSize();
+		Dimension size = lTitulo.getPreferredSize();
+                lTitulo.setBounds(insets.left + 230, insets.top + 15, size.width, size.height);
+                
+                size = lGoogle.getPreferredSize();
 		lGoogle.setBounds(insets.left + 50, insets.top + 75, size.width, size.height);
 		
 		size = lBB.getPreferredSize();
@@ -193,18 +239,84 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 		size = lSitVale.getPreferredSize();
 		lSitVale.setBounds(insets.left + 500, insets.top + 175, size.width, size.height);
 		
+                size = lMonitoramento.getPreferredSize();
+                lMonitoramento.setBounds(insets.left + 50, insets.top + 240, size.width + 100, size.height);
+                
 		//Botão
 		size = jbMonitorar.getPreferredSize();
-		jbMonitorar.setBounds(insets.left + 225, insets.top + 225, size.width, size.height + 30);
+		jbMonitorar.setBounds(insets.left + 430, insets.top + 225, size.width, size.height + 30);
 		
 	}
+        
+    public JLabel getLMonitoramento() {
+        return lMonitoramento;
+    }
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == jbMonitorar) {
-			System.out.println("teste");
-		}
-		
+    public JLabel getlCloseGoogle() {
+        return lCloseGoogle;
+    }
+
+    public JLabel getlCloseBB() {
+        return lCloseBB;
+    }
+
+    public JLabel getlCloseSAN() {
+        return lCloseSAN;
+    }
+
+    public JLabel getlClosePetr() {
+        return lClosePetr;
+    }
+
+    public JLabel getlCloseVale() {
+        return lCloseVale;
+    }
+
+    public JLabel getlSMAGoogle() {
+        return lSMAGoogle;
+    }
+
+    public JLabel getlSMABB() {
+        return lSMABB;
+    }
+
+    public JLabel getlSMASAN() {
+        return lSMASAN;
+    }
+
+    public JLabel getlSMAPetr() {
+        return lSMAPetr;
+    }
+
+    public JLabel getlSMAVale() {
+        return lSMAVale;
+    }
+
+    public JLabel getlSitGoogle() {
+        return lSitGoogle;
+    }
+
+    public JLabel getlSitBB() {
+        return lSitBB;
+    }
+
+    public JLabel getlSitSAN() {
+        return lSitSAN;
+    }
+
+    public JLabel getlSitPetr() {
+        return lSitPetr;
+    }
+
+    public JLabel getlSitVale() {
+        return lSitVale;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+	if(e.getSource() == jbMonitorar) {
+		ControladorPrincipal.getInstance().monitorar();
 	}
+    }
 	
 }

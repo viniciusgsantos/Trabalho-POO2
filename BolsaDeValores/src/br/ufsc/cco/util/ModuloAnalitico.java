@@ -1,4 +1,4 @@
-package br.ufsc.cco.Controle;
+package br.ufsc.cco.util;
 
 import java.util.Map.Entry;
 
