@@ -5,7 +5,6 @@ import br.ufsc.cco.objects.Ativo;
 import br.ufsc.cco.objects.NomeDeAtivo;
 import br.ufsc.cco.objects.Situacao;
 
-import br.ufsc.cco.telas.TelaPrincipal;
 import br.ufsc.cco.threads.RunnableRequest;
 import br.ufsc.cco.threads.RunnableScreenUpdater;
 import java.awt.Color;
