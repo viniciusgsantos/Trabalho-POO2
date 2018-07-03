@@ -5,9 +5,9 @@ import java.util.TimerTask;
 
 public class UpdateScreenTimerTask extends TimerTask {
 
-    @Override
-    public void run() {
-        ControladorDeTela.getInstance().updateScreen();
-    }
-    
+	@Override
+	public void run() {
+		ControladorDeTela.getInstance().updateScreen();
+	}
+
 }

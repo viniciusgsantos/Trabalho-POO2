@@ -6,7 +6,5 @@
 package br.ufsc.cco.objects;
 
 public enum Atributo {
-    CLOSE,
-    SMA,
-    SITUACAO;
+	CLOSE, SMA, SITUACAO;
 }
